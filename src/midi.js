@@ -11,11 +11,7 @@ const onMidiAccessSuccess = (access) => {
   if (access.inputs && access.inputs.size > 0) {
     const inputs = access.inputs.values();
     for (let input = inputs.next(); input && !input.done; input = inputs.next()) {
-      console.dir(input);
       input.value.onmidimessage = getMIDIMessage;
-      input.value.onmidimessage = (msg) => {
-        console.log(msg);
-      };
     }
   }
   const outputs = Array.from(access.outputs.values());

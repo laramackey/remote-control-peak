@@ -31,7 +31,7 @@ function App() {
   return (
     <div className="App">
       <Keyboard device={peak} connection={connection}></Keyboard>
-      <Knob></Knob>
+      <Knob device={peak} connection={connection}></Knob>
     </div>
   );
 }

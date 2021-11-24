@@ -34,6 +34,13 @@ class Knob extends React.PureComponent {
         }
     }
     render() {
+        const sendFilterEvent = (value) => {
+            const midiMessage = [176, 29, value]
+            const destination = this.props.device && this.props?.connection?.id === 'peak' ? this.props.device : this.props?.connection?.send ? this.props.connection : null;
+            if (destination) {
+              destination.send(midiMessage);
+            } 
+          }
         return (
             <div style={{width: '150px'}}>
                 <JqxKnob
@@ -43,6 +50,7 @@ class Knob extends React.PureComponent {
                     width={'150px'} height={'150px'}
                     marks={this.state.marks}
                     progressBar={this.state.progressBar} pointer={this.state.pointer}
+                    onChange= {(knob) => sendFilterEvent(knob.args.value)}
                 />
                 <span style={{color: '#FFFFFF'}}>Cutoff</span>
             </div>
