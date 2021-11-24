@@ -3,9 +3,10 @@ import {v4 as uuid} from 'uuid';
 
 const defaultId = uuid();
 
-const peerConnected = (connection) => {
+const peerConnected = (connection, onMidiReceived) => {
+  console.log('new connection')
   connection.on('data', (data) => {
-    console.log(data);
+    onMidiReceived(data)
   });
 
   connection.on('open', () => {
@@ -13,12 +14,14 @@ const peerConnected = (connection) => {
   });
 };
 
-export const createConnection = () => {
+export const createConnection = (onMidiReceived) => {
   const id = new URL(window.location).searchParams.get('id') || defaultId;
   const peer = new Peer(id);
   console.log(`My ID = ${id}`);
 
-  peer.on('connection', peerConnected);
+  peer.on('connection', (conn) => 
+    peerConnected(conn, onMidiReceived)
+  );
 
   if (!peer) {
     console.error('No peers :(');
@@ -26,7 +29,7 @@ export const createConnection = () => {
   }
 
   if (id === 'peak') {
-    return;
+    return {id};
   }
 
   let connection;
@@ -47,5 +50,6 @@ export const createConnection = () => {
   return {
     send,
     connect,
+    id
   };
 };

@@ -4,15 +4,14 @@ import Whitekey from './Whitekey.js';
 import Blackkey from './Blackkey.js';
 
 const Keyboard = (props) => {
-  //const [note, setNote] = useState();
-
   const setNote = (note) => {
-    if (props.device) {
+    if (props.device && props?.connection?.id === 'peak') {
       props.device.send([0x90, note, 0x40]);
       setTimeout(() => {
         props.device.send([0x80, note, 0x40]);
       }, 1000);
-    } else if (props.connection) {
+    } 
+    else if (props?.connection?.send) {
       props.connection.send([0x90, note, 0x40]);
       setTimeout(() => {
         props.connection.send([0x80, note, 0x40]);

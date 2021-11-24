@@ -11,11 +11,19 @@ function App() {
 
   useEffect(() => {
     const initiliasliseMidi = async () => {
-      setPeak(await midi());
+      const peak = await midi();
+      setPeak(peak);
+      const onMidiReceived = (data) => {
+        console.log(`Peak ${peak}`)
+        console.log(data)
+        if (peak) {
+          peak.send(data)
+        }
+      }
+      setConnection(createConnection(onMidiReceived));
     };
     initiliasliseMidi();
-
-    setConnection(createConnection());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
