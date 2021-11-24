@@ -3,7 +3,8 @@ import './App.css';
 import Keyboard from './components/Keyboard';
 
 import {createConnection} from './Connection';
-import Knob from './components/Knob';
+import { KnobContainer } from  './components/KnobContainer';
+import { SynthContainer } from './components/SynthContainer';
 import {connectToPeak, connectToInputs} from './midi.js';
 
 function App() {
@@ -35,8 +36,10 @@ function App() {
 
   return (
     <div className="App">
-      <Keyboard device={peak} connection={connection}></Keyboard>
-      <Knob device={peak} connection={connection}></Knob>
+      <SynthContainer device={peak} connection={connection}>
+        <KnobContainer device={peak} connection={connection}></KnobContainer>
+        <Keyboard device={peak} connection={connection}></Keyboard>
+      </SynthContainer>
     </div>
   );
 }
