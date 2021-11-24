@@ -20,6 +20,7 @@ const Keyboard = (props) => {
   };
   return (
     <div className="keyboard" id="keyboard">
+      <button style={{width: '50px', height: '50px', marginRight: '20px'}}>&lt;</button>
       <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={72} />
       <Key className='blackkey' setNote={setNote}  stopNote={stopNote} note={73} />
       <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={74} />
@@ -38,6 +39,7 @@ const Keyboard = (props) => {
       <Key className='blackkey' setNote={setNote}  stopNote={stopNote} note={87} />
       <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={88} />
       <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={89} />
+      <button style={{width: '50px', height: '50px', marginLeft: '20px'}}>&gt;</button>
     </div>
   );
 };
