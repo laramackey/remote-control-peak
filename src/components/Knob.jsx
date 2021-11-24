@@ -35,7 +35,7 @@ class Knob extends React.PureComponent {
     }
     render() {
         const sendFilterEvent = (value) => {
-            const midiMessage = [176, 29, value]
+            const midiMessage = [176, this.props.midiDataOne, value]
             const destination = this.props.device && this.props?.connection?.id === 'peak-6837fff9-8481-4046-992a-235da95f01c8' ? this.props.device : this.props?.connection?.send ? this.props.connection : null;
             if (destination) {
               destination.send(midiMessage);

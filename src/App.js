@@ -25,7 +25,9 @@ function App() {
       setConnection(connection);
 
       await connectToInputs((message) => {
-        connection.send(message);
+        if (connection?.send) {
+          connection.send(message);
+        }
       });
     };
     initiliasliseMidi();
