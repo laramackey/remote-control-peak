@@ -21,24 +21,24 @@ const Keyboard = (props) => {
   };
   return (
     <div className="keyboard" id="keyboard">
-      <Whitekey setNote={setNote} note="72" />
-      <Blackkey setNote={setNote} note="73" />
-      <Whitekey setNote={setNote} note="74" />
-      <Blackkey setNote={setNote} note="75" />
-      <Whitekey setNote={setNote} note="76" />
-      <Whitekey setNote={setNote} note="77" />
-      <Blackkey setNote={setNote} note="78" />
-      <Whitekey setNote={setNote} note="79" />
-      <Blackkey setNote={setNote} note="80" />
-      <Whitekey setNote={setNote} note="81" />
-      <Blackkey setNote={setNote} note="82" />
-      <Whitekey setNote={setNote} note="83" />
-      <Whitekey setNote={setNote} note="84" />
-      <Blackkey setNote={setNote} note="85" />
-      <Whitekey setNote={setNote} note="86" />
-      <Blackkey setNote={setNote} note="87" />
-      <Whitekey setNote={setNote} note="88" />
-      <Whitekey setNote={setNote} note="89" />
+      <Whitekey setNote={setNote} note={72} />
+      <Blackkey setNote={setNote} note={73} />
+      <Whitekey setNote={setNote} note={74} />
+      <Blackkey setNote={setNote} note={75} />
+      <Whitekey setNote={setNote} note={76} />
+      <Whitekey setNote={setNote} note={77} />
+      <Blackkey setNote={setNote} note={78} />
+      <Whitekey setNote={setNote} note={79} />
+      <Blackkey setNote={setNote} note={80} />
+      <Whitekey setNote={setNote} note={81} />
+      <Blackkey setNote={setNote} note={82} />
+      <Whitekey setNote={setNote} note={83} />
+      <Whitekey setNote={setNote} note={84} />
+      <Blackkey setNote={setNote} note={85} />
+      <Whitekey setNote={setNote} note={86} />
+      <Blackkey setNote={setNote} note={87} />
+      <Whitekey setNote={setNote} note={88} />
+      <Whitekey setNote={setNote} note={89} />
     </div>
   );
 };
