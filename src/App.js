@@ -14,30 +14,21 @@ function App() {
       const peak = await midi();
       setPeak(peak);
       const onMidiReceived = (data) => {
-        console.log(`Peak ${peak}`)
-        console.log(data)
+        console.log(`Peak ${peak}`);
+        console.log(data);
         if (peak) {
-          peak.send(data)
+          peak.send(data);
         }
-      }
+      };
       setConnection(createConnection(onMidiReceived));
     };
     initiliasliseMidi();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
       <Keyboard device={peak} connection={connection}></Keyboard>
-      {connection && (
-        <button
-          onClick={() => {
-            connection.connect();
-          }}
-        >
-          Connect
-        </button>
-      )}
     </div>
   );
 }

@@ -4,9 +4,9 @@ import {v4 as uuid} from 'uuid';
 const defaultId = uuid();
 
 const peerConnected = (connection, onMidiReceived) => {
-  console.log('new connection')
+  console.log('new connection');
   connection.on('data', (data) => {
-    onMidiReceived(data)
+    onMidiReceived(data);
   });
 
   connection.on('open', () => {
@@ -19,9 +19,7 @@ export const createConnection = (onMidiReceived) => {
   const peer = new Peer(id);
   console.log(`My ID = ${id}`);
 
-  peer.on('connection', (conn) => 
-    peerConnected(conn, onMidiReceived)
-  );
+  peer.on('connection', (conn) => peerConnected(conn, onMidiReceived));
 
   if (!peer) {
     console.error('No peers :(');
@@ -42,6 +40,10 @@ export const createConnection = (onMidiReceived) => {
   };
 
   const send = (data) => {
+    if (!connection) {
+      connect();
+    }
+
     if (connection) {
       connection.send(data);
     }
@@ -50,6 +52,6 @@ export const createConnection = (onMidiReceived) => {
   return {
     send,
     connect,
-    id
+    id,
   };
 };
