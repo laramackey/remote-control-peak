@@ -11,7 +11,7 @@ class Knob extends React.PureComponent {
                 gradientType: 'linear'
             },
             stroke: '#dfe3e9', strokeWidth: 3,
-            backgroundColor: '#000000'
+            backgroundColor: '#000000',
         };
         const marks = {
             colorProgress: '#2db2e4', colorRemaining: '#333',
@@ -35,8 +35,9 @@ class Knob extends React.PureComponent {
     }
     render() {
         return (
-            <div style={{width: '150px'}}>
+            <div style={{width: '200px', display:'flex', flexDirection:'column', justifyContent:'center'}}>
                 <JqxKnob
+                    style={{margin:'auto'}}
                     value={60} min={0} max={127}
                     startAngle={120} endAngle={420} styles={this.state.styles}
                     snapToStep={true} rotation={'clockwise'}
@@ -44,7 +45,7 @@ class Knob extends React.PureComponent {
                     marks={this.state.marks}
                     progressBar={this.state.progressBar} pointer={this.state.pointer}
                 />
-                <span style={{color: '#FFFFFF'}}>Cutoff</span>
+                <span style={{color: '#FFFFFF', width:'100%'}}>{this.props.children}</span>
             </div>
         );
     }

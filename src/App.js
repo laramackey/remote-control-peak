@@ -3,8 +3,9 @@ import './App.css';
 import Keyboard from './components/Keyboard';
 
 import {createConnection} from './Connection';
-import Knob from './components/Knob';
-import {midi} from './midi.js';
+import { KnobContainer } from  './components/KnobContainer';
+import { SynthContainer } from './components/SynthContainer';
+import { midi } from './midi.js';
 
 function App() {
   const [peak, setPeak] = useState();
@@ -30,8 +31,19 @@ function App() {
 
   return (
     <div className="App">
+      <SynthContainer>
+        <KnobContainer></KnobContainer>
       <Keyboard device={peak} connection={connection}></Keyboard>
-      <Knob></Knob>
+      {connection && (
+        <button
+          onClick={() => {
+            connection.connect();
+          }}
+        >
+          Connect
+        </button>
+      )}
+      </SynthContainer>
     </div>
   );
 }
