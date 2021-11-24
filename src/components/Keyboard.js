@@ -13,7 +13,10 @@ const Keyboard = (props) => {
     } 
   }
   const setNoteChange = (diff)=> {
-    setOctave(noteChange + diff)
+    const newValue = noteChange + diff
+    if (newValue < 36 && newValue > -72) {
+      setOctave(noteChange + diff)
+    }
   }
   const setNote = (note) => {
     sendNoteEvent(true, note)
