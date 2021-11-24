@@ -1,43 +1,45 @@
 import React from 'react';
 import './Keyboard.css';
-import Whitekey from './Whitekey.js';
-import Blackkey from './Blackkey.js';
+import Key from './Key'
 
 const Keyboard = (props) => {
-  const setNote = (note) => {
-    if (props.device && props?.connection?.id === 'peak') {
-      props.device.send([0x90, note, 0x40]);
-      setTimeout(() => {
-        props.device.send([0x80, note, 0x40]);
-      }, 1000);
+
+  const sendNoteEvent = (isNoteOn, note) => {
+    const statusByte = isNoteOn ? 0x90 : 0x80;
+    const midiMessage = [statusByte, note, 0x40]
+    const destination = props.device && props?.connection?.id === 'peak' ? props.device : props?.connection?.send ? props.connection : null;
+
+    if (destination) {
+      destination.send(midiMessage);
     } 
-    else if (props?.connection?.send) {
-      props.connection.send([0x90, note, 0x40]);
-      setTimeout(() => {
-        props.connection.send([0x80, note, 0x40]);
-      }, 1000);
-    }
+    
+  }
+  const setNote = (note) => {
+    sendNoteEvent(true, note)
+  };
+  const stopNote = (note) => {
+    sendNoteEvent(false, note)
   };
   return (
     <div className="keyboard" id="keyboard">
-      <Whitekey setNote={setNote} note={72} />
-      <Blackkey setNote={setNote} note={73} />
-      <Whitekey setNote={setNote} note={74} />
-      <Blackkey setNote={setNote} note={75} />
-      <Whitekey setNote={setNote} note={76} />
-      <Whitekey setNote={setNote} note={77} />
-      <Blackkey setNote={setNote} note={78} />
-      <Whitekey setNote={setNote} note={79} />
-      <Blackkey setNote={setNote} note={80} />
-      <Whitekey setNote={setNote} note={81} />
-      <Blackkey setNote={setNote} note={82} />
-      <Whitekey setNote={setNote} note={83} />
-      <Whitekey setNote={setNote} note={84} />
-      <Blackkey setNote={setNote} note={85} />
-      <Whitekey setNote={setNote} note={86} />
-      <Blackkey setNote={setNote} note={87} />
-      <Whitekey setNote={setNote} note={88} />
-      <Whitekey setNote={setNote} note={89} />
+      <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={72} />
+      <Key className='blackkey' setNote={setNote}  stopNote={stopNote} note={73} />
+      <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={74} />
+      <Key className='blackkey' setNote={setNote}  stopNote={stopNote} note={75} />
+      <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={76} />
+      <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={77} />
+      <Key className='blackkey' setNote={setNote}  stopNote={stopNote} note={78} />
+      <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={79} />
+      <Key className='blackkey' setNote={setNote}  stopNote={stopNote} note={80} />
+      <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={81} />
+      <Key className='blackkey' setNote={setNote}  stopNote={stopNote} note={82} />
+      <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={83} />
+      <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={84} />
+      <Key className='blackkey' setNote={setNote}  stopNote={stopNote} note={85} />
+      <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={86} />
+      <Key className='blackkey' setNote={setNote}  stopNote={stopNote} note={87} />
+      <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={88} />
+      <Key className='whitekey' setNote={setNote}  stopNote={stopNote} note={89} />
     </div>
   );
 };
