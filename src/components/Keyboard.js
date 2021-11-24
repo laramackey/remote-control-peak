@@ -8,7 +8,6 @@ const Keyboard = (props) => {
     const statusByte = isNoteOn ? 0x90 : 0x80;
     const midiMessage = [statusByte, note, 0x40]
     const destination = props.device && props?.connection?.id === 'peak-6837fff9-8481-4046-992a-235da95f01c8' ? props.device : props?.connection?.send ? props.connection : null;
-
     if (destination) {
       destination.send(midiMessage);
     } 

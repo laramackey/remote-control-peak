@@ -33,7 +33,7 @@ export const createConnection = (onMidiReceived) => {
   }
 
   if (id === 'peak') {
-    return {peerId};
+    return {id: peerId};
   }
 
   let connection;
