@@ -29,7 +29,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="App">
       <Keyboard device={peak} connection={connection}></Keyboard>
       <Knob></Knob>
     </div>
