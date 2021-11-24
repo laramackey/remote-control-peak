@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import Keyboard from './components/Keyboard';
+
 import {createConnection} from './Connection';
+import Knob from './components/Knob';
 import {midi} from './midi.js';
 
 function App() {
@@ -27,8 +29,9 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="App">
       <Keyboard device={peak} connection={connection}></Keyboard>
+      <Knob></Knob>
     </div>
   );
 }
