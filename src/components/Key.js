@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Blackkey.css';
 import './Whitekey.css'
 
 const Key = (props) => {
+    const [mouseDown, setMouseDown] = useState(false)
+    const noteOff = () => {
+        if (mouseDown) {
+            props.stopNote(props.note)
+            setMouseDown(false)
+        }
+    }
   return (
-    <button onMouseDown={() => props.setNote(props.note)}
-    onMouseUp={() => props.stopNote(props.note)}
-    onMouseLeave={() => props.stopNote(props.note)}
+    <button onMouseDown={() => {
+        setMouseDown(true)
+        props.setNote(props.note)}
+    }
+    onMouseUp={noteOff}
+    onMouseLeave={noteOff}
     className={props.className}>
       {' '}
     </button>
