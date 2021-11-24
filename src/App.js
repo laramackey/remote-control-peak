@@ -34,8 +34,8 @@ function App() {
 
   return (
     <div className="App">
-      <SynthContainer device={peak} connection={connection}>
-        <span style={{width:'100%', display:'block', float:'left'}}><img src="novation-logo.png" width='130px' style={{float:"left", paddingBottom:"10px", paddingLeft:"10px"}}></img></span>
+      <SynthContainer device={peak} connection={connection}> 
+        <span style={{width:'100%', display:'block', float:'left'}}><img src="Novation-Logo.png" width='130px' style={{float:"left", paddingBottom:"10px", paddingLeft:"10px"}}></img></span>
         <KnobContainer device={peak} connection={connection}></KnobContainer>
         <Keyboard device={peak} connection={connection}></Keyboard>
       </SynthContainer>
