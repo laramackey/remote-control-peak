@@ -22,7 +22,7 @@ const peerConnected = (connection, onMidiReceived) => {
 export const createConnection = (onMidiReceived) => {
   const id = new URL(window.location).searchParams.get('id') || defaultId;
   const peerId = (id === 'peak') ? `${id}-6837fff9-8481-4046-992a-235da95f01c8` : id;
-  const peer = new Peer(peerId);
+  const peer = new Peer(peerId, {debug:2});
   console.log(`My ID = ${peerId}`);
 
   peer.on('connection', (conn) => peerConnected(conn, onMidiReceived));
