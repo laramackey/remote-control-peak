@@ -8,7 +8,7 @@ export const SynthContainer = (props) => {
         borderRight:'solid 20px #58302c',
         margin:'auto',
         paddingTop:'20px',
-        backgroundColor:'#1a1a1a',
+        backgroundImage: "linear-gradient(140deg, #0F0F0F, #404040)",
         borderRadius: '5px'
     }}
     >{props.children}
