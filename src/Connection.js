@@ -12,12 +12,18 @@ const peerConnected = (connection, onMidiReceived) => {
   connection.on('open', () => {
     console.log('Peer connected');
   });
+
+  connection.on('error', (err) => {
+    console.log(err);
+  });
+
 };
 
 export const createConnection = (onMidiReceived) => {
   const id = new URL(window.location).searchParams.get('id') || defaultId;
-  const peer = new Peer(id);
-  console.log(`My ID = ${id}`);
+  const peerId = (id === 'peak') ? `${id}-6837fff9-8481-4046-992a-235da95f01c8` : id;
+  const peer = new Peer(peerId);
+  console.log(`My ID = ${peerId}`);
 
   peer.on('connection', (conn) => peerConnected(conn, onMidiReceived));
 
@@ -27,13 +33,13 @@ export const createConnection = (onMidiReceived) => {
   }
 
   if (id === 'peak') {
-    return {id};
+    return {peerId};
   }
 
   let connection;
 
   const connect = () => {
-    connection = peer.connect('peak');
+    connection = peer.connect('peak-6837fff9-8481-4046-992a-235da95f01c8');
     connection.on('open', () => {
       console.log('Connected to peak');
     });

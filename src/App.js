@@ -17,8 +17,6 @@ function App() {
       const peak = await connectToPeak();
       setPeak(peak);
       const onMidiReceived = (data) => {
-        console.log(`Peak ${peak}`);
-        console.log(data);
         if (peak) {
           peak.send(data);
         }
