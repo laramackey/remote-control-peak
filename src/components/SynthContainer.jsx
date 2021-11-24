@@ -2,5 +2,14 @@ import React from 'react';
 //import woodTexture from './images/woodTexture.jpg';
 
 export const SynthContainer = (props) => {
-    return <div style={{width:'70%', borderImage:'url(/woodTexture.jpg) 0 20 0 20 repeat', borderWidth:'0 20px 0 20px', margin:'auto'}}>{props.children}</div>
+    return <div style={{
+        width:'70%',
+        borderLeft:'solid 20px #58302c',
+        borderRight:'solid 20px #58302c',
+        margin:'auto',
+        paddingTop:'20px',
+        backgroundColor:'#1a1a1a'
+    }}
+    >{props.children}
+    </div>
 };
