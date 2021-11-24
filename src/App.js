@@ -4,7 +4,7 @@ import Keyboard from './components/Keyboard';
 
 import {createConnection} from './Connection';
 import Knob from './components/Knob';
-import {midi} from './midi.js';
+import {connectToPeak, connectToInputs} from './midi.js';
 
 function App() {
   const [peak, setPeak] = useState();
@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     const initiliasliseMidi = async () => {
-      const peak = await midi();
+      const peak = await connectToPeak();
       setPeak(peak);
       const onMidiReceived = (data) => {
         console.log(`Peak ${peak}`);
@@ -22,7 +22,12 @@ function App() {
           peak.send(data);
         }
       };
-      setConnection(createConnection(onMidiReceived));
+      const connection = createConnection(onMidiReceived);
+      setConnection(connection);
+
+      await connectToInputs((message) => {
+        connection.send(message);
+      });
     };
     initiliasliseMidi();
     // eslint-disable-next-line react-hooks/exhaustive-deps

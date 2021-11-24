@@ -1,24 +1,27 @@
-export const midi = async () => {
+export const connectToPeak = async () => {
   try {
     const access = await navigator.requestMIDIAccess();
-    return onMidiAccessSuccess(access);
+    const outputs = Array.from(access.outputs.values());
+    const peak = outputs.find((o) => o.name === 'Peak');
+    return peak;
   } catch (err) {
     console.log(err);
   }
 };
 
-const onMidiAccessSuccess = (access) => {
+export const connectToInputs = async (onMidiMessage) => {
+  const access = await navigator.requestMIDIAccess();
   if (access.inputs && access.inputs.size > 0) {
     const inputs = access.inputs.values();
-    for (let input = inputs.next(); input && !input.done; input = inputs.next()) {
-      input.value.onmidimessage = getMIDIMessage;
+    for (
+      let input = inputs.next();
+      input && !input.done;
+      input = inputs.next()
+    ) {
+      console.dir(input);
+      input.value.onmidimessage = (msg) => {
+        onMidiMessage(Array.from(msg.data));
+      };
     }
   }
-  const outputs = Array.from(access.outputs.values());
-  const peak = outputs.find((o) => o.name === 'Peak');
-  return peak;
-};
-
-const getMIDIMessage = (midiMessage) => {
-  console.log(midiMessage);
 };
