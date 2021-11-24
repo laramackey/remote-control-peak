@@ -5,11 +5,19 @@ import Blackkey from './Blackkey.js';
 
 const Keyboard = (props) => {
   //const [note, setNote] = useState();
+
   const setNote = (note) => {
-    props.device.send([0x90, note, 0x40]);
-    setTimeout(() => {
-      props.device.send([0x80, note, 0x40]);
-    }, 1000);
+    if (props.device) {
+      props.device.send([0x90, note, 0x40]);
+      setTimeout(() => {
+        props.device.send([0x80, note, 0x40]);
+      }, 1000);
+    } else if (props.connection) {
+      props.connection.send([0x90, note, 0x40]);
+      setTimeout(() => {
+        props.connection.send([0x80, note, 0x40]);
+      }, 1000);
+    }
   };
   return (
     <div className="keyboard" id="keyboard">
