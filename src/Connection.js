@@ -19,10 +19,28 @@ const peerConnected = (connection, onMidiReceived) => {
 
 };
 
+const urls = [
+  'stun.l.google.com:19302',
+  'stun1.l.google.com:19302',
+  'stun2.l.google.com:19302',
+  'stun3.l.google.com:19302',
+  'stun4.l.google.com:19302',
+  'stun.ekiga.net',
+  'stun.ideasip.com',
+  'stun.rixtelecom.se',
+  'stun.schlund.de',
+  'stun.stunprotocol.org:3478',
+  'stun.voiparound.com',
+  'stun.voipbuster.com',
+  'stun.voipstunt.com',
+  'stun.voxgratia.or'
+]  
+
 export const createConnection = (onMidiReceived) => {
   const id = new URL(window.location).searchParams.get('id') || defaultId;
+
   const peerId = (id === 'peak') ? `${id}-6837fff9-8481-4046-992a-235da95f01c8` : id;
-  const peer = new Peer(peerId, {debug:2});
+  const peer = new Peer(peerId, {debug:2, iceServers: urls.map(url => {return {url}})});
   console.log(`My ID = ${peerId}`);
 
   peer.on('connection', (conn) => peerConnected(conn, onMidiReceived));

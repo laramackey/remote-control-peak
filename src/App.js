@@ -9,7 +9,7 @@ import {connectToPeak, connectToInputs} from './midi.js';
 
 function App() {
   const [peak, setPeak] = useState();
-
+  
   const [connection, setConnection] = useState(null);
 
   useEffect(() => {
